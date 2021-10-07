@@ -1,0 +1,12 @@
+{
+  "name": "moush-vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+     "delete":"find /src -type f -name '*.js' -exec rm {} +"
+  },
+  "author": "",
+  "license": "ISC"
+}
