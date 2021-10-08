@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.parsePath = void 0;
-var Watcher = /** @class */ (function () {
+var Watcher = (function () {
     function Watcher(vm, expOrFn, cb) {
         this.vm = vm;
         this.cb = cb;
@@ -22,16 +19,9 @@ var Watcher = /** @class */ (function () {
     };
     return Watcher;
 }());
-exports.default = Watcher;
-/**
- * Parse simple path.
- * 把一个形如'data.a.b.c'的字符串路径所表示的值，从真实的data对象中取出来
- * 例如：
- * data = {a:{b:{c:2}}}
- * parsePath('a.b.c')(data)  // 2
- */
+export default Watcher;
 var bailRE = /[^\w.$]/;
-function parsePath(path) {
+export function parsePath(path) {
     if (bailRE.test(path)) {
         return;
     }
@@ -45,4 +35,3 @@ function parsePath(path) {
         return obj;
     };
 }
-exports.parsePath = parsePath;

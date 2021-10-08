@@ -1,15 +1,8 @@
 
 import Observer from "./src/core/observe/observe"
+import  "./declare"
 
-declare global {
-  interface Window {
-    target?: any;
-  }
-  interface Object{
-    entries?:any
-  }
-}
-export default class moushVue{
+class moushVue{
   $el:Object
   $data:Object
   constructor(options:any){
@@ -18,4 +11,12 @@ export default class moushVue{
       new Observer(this.$data) //使data内部数据可观测
   }
 }
+ 
+ 
+const app=new moushVue({
+  el:"#app",
+  data:{
+    age:1
+  }
+})
 

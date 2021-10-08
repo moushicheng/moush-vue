@@ -1,19 +1,5 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-/*
- * @Author: 某时橙
- * @Date: 2021-10-05 22:05:34
- * @LastEditTime: 2021-10-07 10:31:35
- * @LastEditors: your name
- * @Description: 请添加介绍
- * @FilePath: \moush-vue\src\core\observe\observe.ts
- * 可以输入预定的版权声明、个性签名、空行等
- */
-var dep_1 = __importDefault(require("./dep"));
-var Observer = /** @class */ (function () {
+import Dep from "./dep";
+var Observer = (function () {
     function Observer(value) {
         this.value = value;
         if (Array.isArray(this.value)) {
@@ -29,10 +15,10 @@ var Observer = /** @class */ (function () {
         }
     };
     Observer.prototype.detect = function (obj, key, val) {
-        if (typeof (val) == 'object') { //同时判断数组和对象
+        if (typeof (val) == 'object') {
             new Observer(val);
         }
-        var dep = new dep_1.default();
+        var dep = new Dep();
         Object.defineProperty(obj, key, {
             get: function () {
                 dep.depend();
@@ -49,4 +35,4 @@ var Observer = /** @class */ (function () {
     };
     return Observer;
 }());
-exports.default = Observer;
+export default Observer;
