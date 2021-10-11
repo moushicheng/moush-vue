@@ -22,6 +22,6 @@ const app=new moushVue({
   }
 })
 
-setInterval(()=>{
-  app.$data.age++
-},1000)
+// setInterval(()=>{
+//   app.$data.age++
+// },1000)
