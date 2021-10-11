@@ -1,8 +1,8 @@
 declare global {
-    interface Window {
-         target: any;
-    }
+  interface Window {
+    target: any;
+  }
+
 }
 
-
-export default ()=>{}
+export default () => {};

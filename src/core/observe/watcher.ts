@@ -4,22 +4,24 @@ export default class Watcher {
     getter:any;
     value:any;
     
-    constructor (vm,expOrFn,cb) {
+    constructor (vm,initVal,expOrFn,cb) {
       this.vm = vm;
       this.cb = cb;
       this.getter = parsePath(expOrFn)
-      this.value = this.get()
+      this.value = this.get() //收集依赖
+      this.value=initVal
     }
     get () {
       window.target = this;
-      const vm = this.vm
-      let value = this.getter.call(vm, vm)
+      let value = this.getter(this.vm.$data)
       window.target = undefined;
       return value
     }
     update () {
+      console.log('@watcher update');
       const oldValue = this.value
-      this.value = this.get()
+      // this.value = this.get() //更新时不要触发getter否则会收集依赖
+      this.value = this.getter(this.vm.$data)
       this.cb.call(this.vm, this.value, oldValue)
     }
   }
@@ -40,7 +42,7 @@ export default class Watcher {
     return function (obj) {
       for (let i = 0; i < segments.length; i++) {
         if (!obj) return
-        obj = obj[segments[i]]
+        obj = obj[segments[i]] //这不会导致每个data里的dep都收集这个watcher！？
       }
       return obj
     }
