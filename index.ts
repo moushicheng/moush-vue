@@ -1,7 +1,7 @@
 
 import Observer from "./src/core/observe/observe"
 import Complier from "./src/core/complier/index"
-import  "./declare"
+import  "./config/declare"
 
 export default class moushVue{
   $el:Object
