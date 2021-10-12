@@ -1,30 +1,31 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './index.ts',
+  entry: "./index.ts",
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, "build"),
+    filename: "bundle.js",
   },
   devServer: {
-    static: './build',
+    directory: path.join(__dirname, "build"),
+    port: 9090,
+    compress:true,
+    open:true
   },
-  mode:"development",
+  mode: "development",
   module: {
-    rules: [
-      { test: /\.ts$/, use: 'ts-loader' },
-    ],
+    rules: [{ test: /\.ts$/, use: "ts-loader" }],
   },
-  resolve:{
-    extensions: ['.js','.ts'],
+  resolve: {
+    extensions: [".js", ".ts"],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'moush-Vue',
-      template:'./config/indexTemplate.html'
+      title: "moush-Vue",
+      template: "./config/indexTemplate.html",
     }),
-  ]
+  ],
 };
 
 // module.exports = {
