@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./declare.ts":
-/*!********************!*\
-  !*** ./declare.ts ***!
-  \********************/
+/***/ "./config/declare.ts":
+/*!***************************!*\
+  !*** ./config/declare.ts ***!
+  \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () { });\r\n\n\n//# sourceURL=webpack://moush-vue/./declare.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () { });\r\n\n\n//# sourceURL=webpack://moush-vue/./config/declare.ts?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \******************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _src_core_observe_observe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/core/observe/observe */ \"./src/core/observe/observe.ts\");\n/* harmony import */ var _src_core_complier_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/core/complier/index */ \"./src/core/complier/index.ts\");\n/* harmony import */ var _declare__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./declare */ \"./declare.ts\");\n\r\n\r\n\r\nvar moushVue = (function () {\r\n    function moushVue(options) {\r\n        this.$el = document.querySelector(options.el);\r\n        this.$data = options.data;\r\n        new _src_core_observe_observe__WEBPACK_IMPORTED_MODULE_0__[\"default\"](this.$data);\r\n        new _src_core_complier_index__WEBPACK_IMPORTED_MODULE_1__[\"default\"](this);\r\n    }\r\n    return moushVue;\r\n}());\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (moushVue);\r\nvar app = new moushVue({\r\n    el: \"#app\",\r\n    data: {\r\n        age: 1\r\n    }\r\n});\r\n\n\n//# sourceURL=webpack://moush-vue/./index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _src_core_observe_observe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/core/observe/observe */ \"./src/core/observe/observe.ts\");\n/* harmony import */ var _src_core_complier_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/core/complier/index */ \"./src/core/complier/index.ts\");\n/* harmony import */ var _config_declare__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config/declare */ \"./config/declare.ts\");\n\r\n\r\n\r\nvar moushVue = (function () {\r\n    function moushVue(options) {\r\n        this.$options = options;\r\n        this.$data = options.data;\r\n        this.$el = options.el;\r\n    }\r\n    moushVue.prototype.mounted = function () {\r\n        this.$options.beforeMount.call(this);\r\n        this.$el = document.querySelector(this.$options.el);\r\n        new _src_core_observe_observe__WEBPACK_IMPORTED_MODULE_0__[\"default\"](this.$data);\r\n        new _src_core_complier_index__WEBPACK_IMPORTED_MODULE_1__[\"default\"](this);\r\n        this.$options.mounted.call(this);\r\n    };\r\n    return moushVue;\r\n}());\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (moushVue);\r\nvar app = new moushVue({\r\n    el: \"#app\",\r\n    data: {\r\n        age: 1\r\n    }\r\n});\r\n\n\n//# sourceURL=webpack://moush-vue/./index.ts?");
 
 /***/ }),
 

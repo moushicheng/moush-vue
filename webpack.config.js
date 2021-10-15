@@ -8,11 +8,11 @@ module.exports = {
     filename: "bundle.js",
   },
   devServer: {
-    directory: path.join(__dirname, "build"),
+    // directory: path.join(__dirname, "build"),
     port: 9090,
     compress:true,
     open:true
-  },
+  }, 
   mode: "development",
   module: {
     rules: [{ test: /\.ts$/, use: "ts-loader" }],
