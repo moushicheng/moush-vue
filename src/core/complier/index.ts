@@ -14,7 +14,7 @@ export default  class Complier{
     //因为这里的node是浏览器节点，会附带大量的无关信息，而vue的vnode是最精简的js对象操作起来会精简无效信息（性能更好）
     if(node.nodeType==1){
         new attrComplier(node,this.$vm) //处理属性
-         
+        
         node.childNodes.forEach(childNode => {
             this.run(childNode)
         })
