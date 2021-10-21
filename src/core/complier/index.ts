@@ -26,9 +26,9 @@ export default  class Complier{
         while(match=reg.exec(node.nodeValue)){
             let raw = match[0]
             let key = match[1].trim()
+            let text=node.nodeValue
             let w=new Watcher(this.$vm,raw,key,(val,oldVal)=>{
-                
-                node.nodeValue = node.nodeValue.replace(oldVal, val)
+                node.nodeValue = text.replace(raw, val)
             })
             w.update();
         }

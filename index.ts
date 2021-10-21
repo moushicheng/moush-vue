@@ -8,7 +8,7 @@ import  "./config/declare"
 export default class moushVue{
 
   $options:any
-  $data:Object
+  $data:any
   $el:Object 
    
   constructor(options:OPTIONS){
