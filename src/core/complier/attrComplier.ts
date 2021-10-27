@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-10-21 18:36:23
+ * @LastEditTime: 2021-10-27 22:32:18
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
@@ -55,18 +55,25 @@ export default class attrComplier {
     for (let i = 0; i < attrs.length; i++) {
       const attr = attrs[i][1];
       let run = attr.run;
-      this[run](attrs[i]);
+      this[run](attrs[i][1]);
     }
   }
   handelVIF(attr) {
-    // let key = attr.value;//v-if:value,value实际上是data选项里的key之一
-    // let nodeCopy; //获取当前节点的拷贝
-    // new Watcher(this.$vm, false, key, (val, oldVal) => {
-    //   if(val){
-    //     //删除当前节点
-    //   }else{
-    //     //赋予父节点当前节点
-    //   }
-    // });
+    let key = attr.value;//v-if:value,value实际上是data选项里的key之一
+    let nodeCopy=this.$node.cloneNode(true);
+    let parentNode=this.$node.parentElement;
+    let isExist:boolean=true 
+    let w=new Watcher(this.$vm, false, key, (val, oldVal) => {
+      if(val&&isExist!=true){ 
+           //赋予父节点当前节点
+        parentNode.appendChild(nodeCopy)
+     
+      }else{
+            //删除当前节点,这里有问题要记录当前节点位置
+        isExist=false;
+        parentNode.removeChild(this.$node)    
+      }
+    });
+    w.update()
   }
 }

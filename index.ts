@@ -46,4 +46,8 @@ const app=new moushVue({
 })
 // setInterval(()=>{
 //   app.$data.age++
-// },1000)
+//    app.$data.isShow=true
+// },5000)
+setTimeout(() => {
+  app.$data.isShow=true
+}, 1000);
