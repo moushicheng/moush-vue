@@ -1,7 +1,7 @@
 <!--
  * @Author: 某时橙
  * @Date: 2021-10-13 21:35:58
- * @LastEditTime: 2021-10-28 09:41:22
+ * @LastEditTime: 2021-10-28 23:06:43
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\README.md
@@ -15,3 +15,7 @@
 ## start
 > npm run dev
 
+## 现已完成
+1. 模板编译
+2. 数据绑定
+3. v-if

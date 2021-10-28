@@ -43,6 +43,14 @@ const app=new moushVue({
   data:{
     age:1,
     name:"小明",
+    isShow:false
   } 
 })
+
+setTimeout(() => {
+  app.$data.isShow=true
+}, 1000);
+setInterval(()=>{
+  app.$data.age++
+},10000)
 
