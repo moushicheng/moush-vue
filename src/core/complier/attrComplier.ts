@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-10-27 22:32:18
+ * @LastEditTime: 2021-10-28 09:47:34
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
@@ -60,17 +60,21 @@ export default class attrComplier {
   }
   handelVIF(attr) {
     let key = attr.value;//v-if:value,value实际上是data选项里的key之一
-    let nodeCopy=this.$node.cloneNode(true);
+    // let nodeCopy=this.$node.cloneNode(true);
     let parentNode=this.$node.parentElement;
-    let isExist:boolean=true 
+    let isExist:boolean=true
+    let lastSiteNode:any; //记录最后一次删除时，节点所在的位置
+    console.dir(this.$node);
     let w=new Watcher(this.$vm, false, key, (val, oldVal) => {
-      if(val&&isExist!=true){ 
+      if(val){
+        if(isExist)return;
            //赋予父节点当前节点
-        parentNode.appendChild(nodeCopy)
+        parentNode.insertBefore(this.$node,lastSiteNode)
+        // this.$vm.$helper.touch();
      
       }else{
-            //删除当前节点,这里有问题要记录当前节点位置
         isExist=false;
+        lastSiteNode=this.$node.nextSibling
         parentNode.removeChild(this.$node)    
       }
     });

@@ -2,6 +2,7 @@
 import Observer from "./src/core/observe/observe"
 import Complier from "./src/core/complier/index"
 import { mergeObj } from "./src/tool/utils"
+import helper from "./src/core/init/helper"
 import  "./config/declare"
 
 
@@ -10,7 +11,7 @@ export default class moushVue{
   $options:any
   $data:any
   $el:Object 
-   
+  $helper:any
   constructor(options:OPTIONS){
       this.$options=options
       this.init();
@@ -24,6 +25,7 @@ export default class moushVue{
         method:function(){}
     })
     this.$data=this.$options.data;
+    this.$helper=new helper(this);
   }
   mounted() {
     this.$options.beforeMount.call(this)
@@ -44,10 +46,10 @@ const app=new moushVue({
     isShow:false
   } 
 })
-// setInterval(()=>{
-//   app.$data.age++
-//    app.$data.isShow=true
-// },5000)
+
 setTimeout(() => {
   app.$data.isShow=true
+}, 1000);
+setTimeout(() => {
+  app.$data.age=5
 }, 1000);

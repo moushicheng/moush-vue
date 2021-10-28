@@ -28,10 +28,11 @@ export default  class Complier{
             let key = match[1].trim()
             let text=node.nodeValue
             let w=new Watcher(this.$vm,raw,key,(val,oldVal)=>{
-                while(text.match(raw)){
-                    text=text.replace(raw, val)
+                let _text=text
+                while(_text.match(raw)){
+                    _text=_text.replace(raw, val)
                 }
-                node.nodeValue =text; 
+                node.nodeValue =_text; 
             })
             w.update();
         }
