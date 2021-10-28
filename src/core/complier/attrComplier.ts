@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-10-28 09:47:34
+ * @LastEditTime: 2021-10-28 16:08:58
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
@@ -14,14 +14,13 @@ const commonAttr = {
 };
 
 export default class attrComplier {
-  $vm: any;
+  $vm: VM
   $attrs: any;
   $node: any;
   constructor(node, vm) {
     this.$vm = vm;
     this.$node = node;
     this.$attrs = this.formatAttrs(this.getAllVueAttrs(node));
-
     this.handeler(this.$attrs);
   }
   //获得所有跟Vue属性相关的属性

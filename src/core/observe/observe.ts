@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-05 22:05:34
- * @LastEditTime: 2021-10-10 17:54:39
+ * @LastEditTime: 2021-10-28 16:12:22
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\observe\observe.ts
@@ -34,12 +34,10 @@ export default class Observer{
 
         Object.defineProperty(obj,key,{
             get(){       
-            console.log('in getter',val,dep); 
              dep.depend();  
              return val
             },
             set(newVal){
-                console.log('in setter',val,newVal);
                 if(val === newVal){
                     return
                 }

@@ -7,7 +7,6 @@ import  "./config/declare"
 
 
 export default class moushVue{
-
   $options:any
   $data:any
   $el:Object 
@@ -43,13 +42,7 @@ const app=new moushVue({
   el:"#app",
   data:{
     age:1,
-    isShow:false
+    name:"小明",
   } 
 })
 
-setTimeout(() => {
-  app.$data.isShow=true
-}, 1000);
-setTimeout(() => {
-  app.$data.age=5
-}, 1000);

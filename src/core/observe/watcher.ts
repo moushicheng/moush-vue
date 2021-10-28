@@ -1,5 +1,5 @@
 export default class Watcher {
-    vm:any
+    vm:VM
     cb:Function;
     getter:any;
     value:any;
@@ -18,7 +18,6 @@ export default class Watcher {
       return value
     }
     update () {
-      console.log('@watcher update');
       const oldValue = this.value
       // this.value = this.get() //更新时不要触发getter否则会收集依赖
       this.value = this.getter(this.vm.$data)

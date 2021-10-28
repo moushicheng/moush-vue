@@ -1,7 +1,9 @@
 import Watcher from "../observe/watcher"
 import attrComplier from "./attrComplier";
+import textComplier from "./textComplier";
+
 export default  class Complier{
-    $vm:any;
+    $vm:VM
    constructor(vm){
       this.$vm=vm;
       this.run(vm.$el)
@@ -19,23 +21,9 @@ export default  class Complier{
             this.run(childNode)
         })
     }
-
+    //文字节点
     if(node.nodeType==3){
-        let reg = /{{(.+?)}}/g
-        let match
-        while(match=reg.exec(node.nodeValue)){
-            let raw = match[0]
-            let key = match[1].trim()
-            let text=node.nodeValue
-            let w=new Watcher(this.$vm,raw,key,(val,oldVal)=>{
-                let _text=text
-                while(_text.match(raw)){
-                    _text=_text.replace(raw, val)
-                }
-                node.nodeValue =_text; 
-            })
-            w.update();
-        }
+       new textComplier(node,this.$vm)
     }
    }
 }

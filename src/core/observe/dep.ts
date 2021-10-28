@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-06 15:33:23
- * @LastEditTime: 2021-10-10 19:35:39
+ * @LastEditTime: 2021-10-28 16:12:03
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\observe\dep.ts
@@ -28,7 +28,6 @@ export default class Dep {
   // 添加一个依赖
   depend() {
     if (window.target) {
-      console.log('@dep depend');
         this.addSub(window.target)
     }
   }
