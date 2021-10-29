@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-10-28 16:08:58
+ * @LastEditTime: 2021-10-29 22:51:43
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
@@ -63,7 +63,6 @@ export default class attrComplier {
     let parentNode=this.$node.parentElement;
     let isExist:boolean=true
     let lastSiteNode:any; //记录最后一次删除时，节点所在的位置
-    console.dir(this.$node);
     let w=new Watcher(this.$vm, false, key, (val, oldVal) => {
       if(val){
         if(isExist)return;
