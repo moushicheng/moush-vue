@@ -3,5 +3,6 @@ interface OPTIONS {
   el: string;
   mounted?: Function;
   beforeMount?: Function;
+  components:any
 }
 

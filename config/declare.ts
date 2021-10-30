@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-14 23:23:59
- * @LastEditTime: 2021-10-28 15:50:57
+ * @LastEditTime: 2021-10-30 21:51:33
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\config\declare.ts

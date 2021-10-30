@@ -1,4 +1,7 @@
-import { makeSet } from "../../tool/utils";
+import { makeSet, warn } from "../../tool/utils";
+
+import { com } from "../../../index";
+
 
 const HTMLTags = makeSet(
     'html,body,base,head,link,meta,style,title,' +
@@ -29,10 +32,28 @@ const HTMLTags = makeSet(
 
   export default class componentComplier{
     $vm:VM;
-    $node:any;
+    $node:HTMLBaseElement;
+    $comData:any;
       constructor(node,vm){
           this.$vm=vm
-          this.$node=node;             
+          this.$node=node;
+          this.$comData=this.getComponent();
+          if(!this.$comData)return;
+          this.createComponent();
+      
       }
+      getComponent(){
+        const name=this.$node.localName;
+        const com=this.$vm.$options.components[name]
+        if(!name){
+          warn('没有找到组件数据,你真的注册了组件吗？')
+        }
+        return com;
+      }
+      createComponent(){
+          new com({
 
+          });
+      } 
+      
   }
