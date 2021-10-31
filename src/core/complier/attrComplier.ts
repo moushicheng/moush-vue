@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-10-29 22:51:43
+ * @LastEditTime: 2021-10-31 10:11:22
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
@@ -53,16 +53,17 @@ export default class attrComplier {
     attrs = Object.entries(attrs);
     for (let i = 0; i < attrs.length; i++) {
       const attr = attrs[i][1];
-      let run = attr.run;
+      const run = attr.run;
       this[run](attrs[i][1]);
     }
   }
   handelVIF(attr) {
-    let key = attr.value;//v-if:value,value实际上是data选项里的key之一
+    const parentNode=this.$node.parentElement;
+    const key = attr.value;//v-if:value,value实际上是data选项里的key之一
     // let nodeCopy=this.$node.cloneNode(true);
-    let parentNode=this.$node.parentElement;
-    let isExist:boolean=true
-    let lastSiteNode:any; //记录最后一次删除时，节点所在的位置
+ 
+    let isExist=true
+    let lastSiteNode; //记录最后一次删除时，节点所在的位置
     let w=new Watcher(this.$vm, false, key, (val, oldVal) => {
       if(val){
         if(isExist)return;

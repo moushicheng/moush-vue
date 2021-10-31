@@ -1,6 +1,6 @@
 import { makeSet, warn } from "../../tool/utils";
 
-import { com } from "../../../index";
+import { com } from "../instance/index";
 
 
 const HTMLTags = makeSet(
@@ -52,7 +52,10 @@ const HTMLTags = makeSet(
       }
       createComponent(){
           new com({
-
+             el:this.$node,
+             parentVm:this.$vm,
+             template:this.$comData.template,
+             data:this.$comData.data,
           });
       } 
       
