@@ -17,7 +17,7 @@ export default class moushVue {
     this.mount();
    
   }
-  init() {
+  protected init() {
     this.$options = mergeObj(this.$options, {
       beforeMount: () => {},
       watch: () => {},
@@ -45,15 +45,15 @@ export class com extends moushVue{
     super(options)
     console.log(this);
   }
-  init(){
+  protected init(){
      super.init();
      this.$parentVm.$childrenVm.push(this);
   }
   mount(){
+    this.$options.beforeMount.call(this);
     const node:HTMLElement=this.$options.el
     const parentNode:HTMLElement=node.parentElement;
     const nextNode=node.nextSibling;
-    this.$options.beforeMount.call(this);
     //替换
     const newNode=CreateDOM(this.$options.template)
     parentNode.removeChild(node)

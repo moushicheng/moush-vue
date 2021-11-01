@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-10-31 10:11:22
+ * @LastEditTime: 2021-11-01 18:31:17
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
@@ -11,17 +11,23 @@ import Watcher from "../observe/watcher";
 const commonAttr = {
   "v-if": /^v-if/,
   "v-on": /^v-on/,
+  "v-bind":/^(v-bind)|^:.+/,
 };
+
+
+
 
 export default class attrComplier {
   $vm: VM
-  $attrs: any;
+  $attrs: Object;
   $node: any;
   constructor(node, vm) {
     this.$vm = vm;
     this.$node = node;
-    this.$attrs = this.formatAttrs(this.getAllVueAttrs(node));
-    this.handeler(this.$attrs);
+    let vueAttrs=this.getAllVueAttrs(node)
+    vueAttrs=this.aliasTransform(node);
+    this.$attrs = this.formatAttrs(vueAttrs);
+    // this.handeler(this.$attrs);
   }
   //获得所有跟Vue属性相关的属性
   getAllVueAttrs(node) {
@@ -34,6 +40,7 @@ export default class attrComplier {
       });
       return res;
     });
+    console.log(attrs);
     return attrs;
   }
   //规整属性
@@ -47,6 +54,10 @@ export default class attrComplier {
       };
     }
     return res;
+  }
+  //转换属性别名，如:test="true" ->v-bind:test=“true”
+  aliasTransform(attrs){
+       return attrs
   }
   handeler(attrs) {
     if (attrs == false) return;
@@ -78,5 +89,8 @@ export default class attrComplier {
       }
     });
     w.update()
+  }
+  handelVBIND(attr){
+    
   }
 }

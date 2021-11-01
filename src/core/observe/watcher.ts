@@ -41,7 +41,7 @@ export default class Watcher {
     return function (obj) {
       for (let i = 0; i < segments.length; i++) {
         if (!obj) return
-        obj = obj[segments[i]] //这不会导致每个data里的dep都收集这个watcher！？
+        obj = obj[segments[i]] 
       }
       return obj
     }

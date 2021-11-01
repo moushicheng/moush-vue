@@ -1,7 +1,7 @@
 <!--
  * @Author: 某时橙
  * @Date: 2021-10-13 21:35:58
- * @LastEditTime: 2021-10-28 23:06:43
+ * @LastEditTime: 2021-10-31 13:11:30
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\README.md
@@ -19,3 +19,4 @@
 1. 模板编译
 2. 数据绑定
 3. v-if
+4. 组件渲染

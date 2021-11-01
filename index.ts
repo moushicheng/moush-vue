@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-30 22:05:23
- * @LastEditTime: 2021-10-31 10:21:33
+ * @LastEditTime: 2021-11-01 18:09:20
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\index.ts
@@ -21,14 +21,13 @@ const app = new moushVue({
     },
     components: {
       coma: {
-        template: `<h1>局部组件{{appName}}属性:{{appAttr}}</h1>`,
+        template: `<h1>局部组件{{appName}}自身属性:{{appAttr}}</h1>`,
         data: function () {
           return {
             appName: "moush",
             appAttr:"attr"
           };
         },
-        props: ["appProp"],
       },
     },
   });
