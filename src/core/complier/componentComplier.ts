@@ -31,32 +31,34 @@ const HTMLTags = makeSet(
   }
 
   export default class componentComplier{
-    $vm:VM;
-    $node:HTMLBaseElement;
+    $fatherVm:VM;
+    $comVm:VM;
+    $node:HTMLBaseElement; 
     $comData:any;
       constructor(node,vm){
-          this.$vm=vm
+          this.$fatherVm=vm
           this.$node=node;
-          this.$comData=this.getComponent();
+          this.$comData=this.getComponentData();
           if(!this.$comData)return;
-          this.createComponent();
-      
+          this.$comVm=this.createComponent();
       }
-      getComponent(){
+      getComponentData(){
         const name=this.$node.localName;
-        const com=this.$vm.$options.components[name]
+        const com=this.$fatherVm.$options.components[name]
         if(!name){
           warn('没有找到组件数据,你真的注册了组件吗？')
         }
         return com;
       }
       createComponent(){
-          new com({
+          return new com({
              el:this.$node,
-             parentVm:this.$vm,
+             parentVm:this.$fatherVm,
              template:this.$comData.template,
              data:this.$comData.data,
           });
-      } 
-      
+      }
+      getComVm(){
+         return this.$comVm;
+      }
   }

@@ -54,20 +54,35 @@ export class com extends moushVue{
     const node:HTMLElement=this.$options.el
     const parentNode:HTMLElement=node.parentElement;
     const nextNode=node.nextSibling;
-    //替换
-    const newNode=CreateDOM(this.$options.template)
-    parentNode.removeChild(node)
-    parentNode.insertBefore(newNode,nextNode);
+    //替换原节点
+    const newNode=CreateDOM(this.$options.template) //根据模板创建新节点
+    parentNode.removeChild(node)                    //删除旧节点
+    parentNode.insertBefore(newNode,nextNode);      //添加新节点
+
+    //附加原属性
+     this.setAttr(node,newNode)
+
+
     //挂载
     this.$el=newNode;
 
     new Observer(this.$data); //使data内部数据可观测
     new Complier(this); //分析el内部节点并生成相应watcher
     this.$options.mounted.call(this);
+  }
+  getDom(){
+    return this.$el;    
+  }
+  private setAttr(node:HTMLElement,target:HTMLElement){
+    const attrs=node.attributes;
+    for(let i=0;i<attrs.length;i++){
+      const nodeAttr=node.attributes[i];
+      target.setAttribute(nodeAttr.name,nodeAttr.value)
+    }
 
   }
 }
-function CreateDOM(str) {
+function CreateDOM(str):HTMLDivElement {
   let dom, tmp = document.createElement('div');
   tmp.innerHTML = str;
   dom = tmp.children[0];

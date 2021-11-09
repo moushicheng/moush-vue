@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-11-01 18:31:17
+ * @LastEditTime: 2021-11-01 18:32:56
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
@@ -13,10 +13,6 @@ const commonAttr = {
   "v-on": /^v-on/,
   "v-bind":/^(v-bind)|^:.+/,
 };
-
-
-
-
 export default class attrComplier {
   $vm: VM
   $attrs: Object;
