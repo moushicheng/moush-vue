@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-11-10 09:53:57
+ * @LastEditTime: 2021-11-10 10:16:04
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
@@ -71,7 +71,6 @@ export default class attrComplier {
  
     let isExist=true
     let lastSiteNode; //记录最后一次删除时，节点所在的位置
-
     let w=new Watcher(this.$vm, false, key, (val, oldVal) => {
       if(val==undefined){
         warn('undefinedKey:'+attr.value+' In node:'+this.$vm.$el.nodeName)
