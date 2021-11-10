@@ -1,12 +1,13 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-11-01 18:32:56
+ * @LastEditTime: 2021-11-10 09:53:57
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
  * 可以输入预定的版权声明、个性签名、空行等
  */
+import { warn } from "../../tool/utils";
 import Watcher from "../observe/watcher";
 const commonAttr = {
   "v-if": /^v-if/,
@@ -21,9 +22,9 @@ export default class attrComplier {
     this.$vm = vm;
     this.$node = node;
     let vueAttrs=this.getAllVueAttrs(node)
-    vueAttrs=this.aliasTransform(node);
+    vueAttrs=this.aliasTransform(vueAttrs);
     this.$attrs = this.formatAttrs(vueAttrs);
-    // this.handeler(this.$attrs);
+    this.handeler(this.$attrs);
   }
   //获得所有跟Vue属性相关的属性
   getAllVueAttrs(node) {
@@ -36,7 +37,6 @@ export default class attrComplier {
       });
       return res;
     });
-    console.log(attrs);
     return attrs;
   }
   //规整属性
@@ -71,7 +71,13 @@ export default class attrComplier {
  
     let isExist=true
     let lastSiteNode; //记录最后一次删除时，节点所在的位置
+
     let w=new Watcher(this.$vm, false, key, (val, oldVal) => {
+      if(val==undefined){
+        warn('undefinedKey:'+attr.value+' In node:'+this.$vm.$el.nodeName)
+        return;
+      }
+
       if(val){
         if(isExist)return;
            //赋予父节点当前节点
