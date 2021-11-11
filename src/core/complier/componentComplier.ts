@@ -14,15 +14,16 @@ const HTMLTags = makeSet(
     'button,datalist,fieldset,form,input,label,legend,meter,optgroup,option,' +
     'output,progress,select,textarea,' +
     'details,dialog,menu,menuitem,summary,' +
-    'content,element,shadow,template,blockquote,iframe,tfoot'
-  );
-
-
-  const isSVGs = makeSet(
+    'content,element,shadow,template,blockquote,iframe,tfoot'+
     'svg,animate,circle,clippath,cursor,defs,desc,ellipse,filter,font-face,' +
     'foreignObject,g,glyph,image,line,marker,mask,missing-glyph,path,pattern,' +
     'polygon,polyline,rect,switch,symbol,text,textpath,tspan,use,view'
   );
+  // const isSVGs = makeSet(
+  //   'svg,animate,circle,clippath,cursor,defs,desc,ellipse,filter,font-face,' +
+  //   'foreignObject,g,glyph,image,line,marker,mask,missing-glyph,path,pattern,' +
+  //   'polygon,polyline,rect,switch,symbol,text,textpath,tspan,use,view'
+  // );
 
   export function isHtmlTags(tag){
     if(HTMLTags.has(tag))return true;

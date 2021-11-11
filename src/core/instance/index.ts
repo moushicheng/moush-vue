@@ -50,7 +50,7 @@ export class com extends moushVue {
     super.init();
     this.$parentVm.$childrenVm.push(this);
   }
-  protected mount() {
+  protected mount() { 
     this.$options.beforeMount.call(this);
     const node: HTMLElement = this.$options.el;
     const parentNode: HTMLElement = node.parentElement;
