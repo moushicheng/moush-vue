@@ -4,5 +4,19 @@ interface OPTIONS {
   mounted?: Function;
   beforeMount?: Function;
   components:any
+  methods?:Object<any>;
 }
 
+interface Window {
+  target: any;
+}
+
+
+interface VM {
+  $options: any;
+  $data: any;
+  $el: HTMLElement;
+  $parentVm: VM;
+  $childrenVm: VM[];
+  $methods:any
+}

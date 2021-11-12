@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-30 22:05:23
- * @LastEditTime: 2021-11-10 09:25:07
+ * @LastEditTime: 2021-11-12 13:25:39
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\index.ts
@@ -19,6 +19,13 @@ const app = new moushVue({
         isShow: true,
       };
     },
+    methods:{
+       addFunc:function(){
+         this.age++;
+         console.log(this.age);
+         console.log(this);
+       }
+    },
     components: {
       coma: {
         template: `<h1 class="com">局部组件{{appName}}自身属性:{{appAttr}}</h1>`,
@@ -31,3 +38,5 @@ const app = new moushVue({
       },
     },
   });
+
+//  app.$methods.addFunc();

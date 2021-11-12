@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-11-11 10:00:41
+ * @LastEditTime: 2021-11-12 12:37:14
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
@@ -111,6 +111,7 @@ export default class attrComplier {
     w.update();
   }
   handelVBIND(attr) {
+    
   }
   handelVON(attr){
   }

@@ -1,32 +1,33 @@
 import Observer from "../observe/observe";
 import Complier from "../complier/index";
 import { mergeObj } from "../../tool/utils";
-import "../../../config/declare";
 
 //现版本有个问题，moushVue是以根实例的形态构建的，没有考虑组件，现在说不算是重构，但需要增加细节让其变成以组件来构建的形式，毕竟跟实例也能算是个组件
 
-export default class moushVue {
+export default class moushVue implements VM{
   $options: any;
   $data: any;
   $el: HTMLElement;
   $parentVm: VM;
   $childrenVm: VM[];
+  $methods:any
   constructor(options: OPTIONS) {
     this.$options = options;
     this.init();
     this.mount();
     this.observe();
+
   }
   protected init() {
     this.$options = mergeObj(this.$options, {
       beforeMount: () => {},
-      watch: () => {},
-      method: () => {},
       mounted: () => {},
     });
     this.$parentVm = this.$options.parentVm;
     this.$childrenVm = [];
-    this.$data = this.$options.data();
+    this.dataInit();
+    this.methodInit();
+    
   }
   protected mount() {
     this.$options.beforeMount.call(this);
@@ -39,6 +40,25 @@ export default class moushVue {
   protected observe() {
     new Observer(this.$data); //使data内部数据可观测
     new Complier(this); //分析el内部节点并生成相应watcher
+  }
+  private dataInit(){
+    this.$data = this.$options.data();
+    for (const key in this.$data) {
+      
+      Object.defineProperty(this, key, {
+        get() {
+          console.log('@get');
+          return this.$data[key]
+        },
+        set(newValue) {
+          console.log('@set'+newValue);
+          this.$data[key]= newValue
+        },
+      })
+    }
+  }
+  private methodInit(){
+    this.$methods=this.$options.methods;  
   }
 }
 
