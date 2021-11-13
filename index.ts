@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-30 22:05:23
- * @LastEditTime: 2021-11-12 13:25:39
+ * @LastEditTime: 2021-11-13 19:14:48
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\index.ts
@@ -22,8 +22,6 @@ const app = new moushVue({
     methods:{
        addFunc:function(){
          this.age++;
-         console.log(this.age);
-         console.log(this);
        }
     },
     components: {
@@ -39,4 +37,4 @@ const app = new moushVue({
     },
   });
 
-//  app.$methods.addFunc();
+ app.$methods.addFunc();

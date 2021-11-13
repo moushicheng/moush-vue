@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-11-12 12:37:14
+ * @LastEditTime: 2021-11-13 12:38:23
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
@@ -18,17 +18,17 @@ export default class attrComplier {
   $vm: VM;
   $attrs: Object;
   $node: any;
-  constructor(node, vm) {
+  $complierIndex
+  constructor(node, vm,complierIndex=0) {
     this.$vm = vm;
     this.$node = node;
+    this.$complierIndex=complierIndex
 
     let vueAttrs = this.getAllVueAttrs(node);
-
     vueAttrs = this.aliasTransform(vueAttrs);
-
     this.$attrs = this.collectAttrs(vueAttrs);
-    console.log(this.$attrs);
     this.handeler(this.$attrs);
+    this.removeAttrs(vueAttrs);
   }
   //获得所有跟Vue属性相关的属性
   getAllVueAttrs(node) {
@@ -39,6 +39,7 @@ export default class attrComplier {
         if (res == true) return;
         res = attrExp.test(attr.name);
       });
+      
       return res;
     });
     return attrs;
@@ -72,6 +73,9 @@ export default class attrComplier {
   //转换属性别名，如:test="true" ->v-bind:test=“true”
   aliasTransform(attrs) {
     return attrs;
+  }
+  removeAttrs(attrs){
+    return null;
   }
   handeler(attrs) {
     if (attrs == false) return;
@@ -114,5 +118,6 @@ export default class attrComplier {
     
   }
   handelVON(attr){
+    console.log(attr);
   }
 }

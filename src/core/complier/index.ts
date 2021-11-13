@@ -31,7 +31,7 @@ export default  class Complier{
             new attrComplier(node,this.$vm);
             return; 
         } 
-        new attrComplier(node,this.$vm) //处理属性，需要注意的是，如果是vue属性（v-if v-on），应该在处理完之后在节点上删去
+        new attrComplier(node,this.$vm) //处理属性，需要注意的是，如果是vue属性（v-if v-on），应该在处理完之后在节点上删去,否则会和子组件混淆
 
 
         node.childNodes.forEach(childNode => {
