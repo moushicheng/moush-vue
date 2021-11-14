@@ -34,7 +34,7 @@ const HTMLTags = makeSet(
   export default class componentComplier{
     $fatherVm:VM;
     $comVm:VM;
-    $node:HTMLBaseElement; 
+    $node:HTMLDivElement; 
     $comData:any;
       constructor(node,vm){
           this.$fatherVm=vm

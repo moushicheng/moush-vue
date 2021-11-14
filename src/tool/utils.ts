@@ -1,9 +1,9 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-14 20:43:41
- * @LastEditTime: 2021-11-13 22:32:07
+ * @LastEditTime: 2021-11-14 14:44:30
  * @LastEditors: your name
- * @Description: 请添加介绍
+ * @Description: 全局通用工具函数
  * @FilePath: \moush-vue-test\src\tool\utils.ts
  * 可以输入预定的版权声明、个性签名、空行等
  */
@@ -30,10 +30,6 @@ export function isType(ele,type){
   const _type = function (ele) {
    return Object.prototype.toString.call(ele).slice(8, -1);
   };
-
   const res=_type(ele)==type
-
   return res;
-  
- 
 }

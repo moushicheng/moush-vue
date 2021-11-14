@@ -1,9 +1,9 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-11-12 13:44:36
- * @LastEditTime: 2021-11-13 19:13:23
+ * @LastEditTime: 2021-11-14 14:48:06
  * @LastEditors: your name
- * @Description: 请添加介绍
+ * @Description: init类，用于moushVue类对象的初始化 
  * @FilePath: \moush-vue-test\src\core\instance\init.ts
  * 可以输入预定的版权声明、个性签名、空行等
  */

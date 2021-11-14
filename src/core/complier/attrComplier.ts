@@ -1,9 +1,9 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-11-14 09:21:49
+ * @LastEditTime: 2021-11-14 18:50:55
  * @LastEditors: your name
- * @Description: 请添加介绍
+ * @Description: 属性编辑器，用于分析属性
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
  * 可以输入预定的版权声明、个性签名、空行等
  */
@@ -18,7 +18,7 @@ export default class attrComplier {
   $vm: VM;
   $attrs: Object;
   $node: HTMLDivElement;
-  $complierIndex;
+  $complierIndex:any;
   constructor(node, vm, complierIndex = 0) {
     this.$vm = vm;
     this.$node = node;
@@ -47,7 +47,7 @@ export default class attrComplier {
     });
     return attrs;
   }
-  //集合属性
+  //集合属性，去除attr对象不相关信息
   collectAttrs(attrs) {
     const res = {};
     for (let i = 0; i < attrs.length; i++) {
@@ -56,10 +56,11 @@ export default class attrComplier {
         value: attrs[i].nodeValue,
         run: "handel" + attrs[i].name.split("-").join("").toUpperCase(),
       };
-      this.formatAttrs(res[attrs[i].name]); //使v-bind:attr=value这种属性规整化
+      this.formatAttrs(res[attrs[i].name]); 
     }
     return res;
   }
+  //使v-bind:attr=value这种属性规整化
   formatAttrs(attr) {
     if (/:/.test(attr.name)) {
       const split = attr.name.split(":");
@@ -122,7 +123,13 @@ export default class attrComplier {
     });
     w.update();
   }
-  handelVBIND(attr) {}
+  handelVBIND(attr) {
+    
+  }
   handelVON(attr) {
+    const node=this.$node
+    const event=attr.value.split(':')[0]
+    let func=this.$vm.$methods[attr.value.split(':')[1]]
+    node.addEventListener(event,func)
   }
 }

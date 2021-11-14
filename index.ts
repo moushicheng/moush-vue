@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-30 22:05:23
- * @LastEditTime: 2021-11-14 09:08:28
+ * @LastEditTime: 2021-11-14 18:46:42
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\index.ts
@@ -33,14 +33,11 @@ const app = new moushVue({
         data: function () {
           return {
             appName: "moush",
-            appAttr:"attr"
+            appAttr:"attr",
+
           };
         },
       },
     },
   });
 
-setInterval(()=>{
-  app.$methods.addFunc();
-  app.$methods.switchIsShow();
-},5000)

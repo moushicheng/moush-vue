@@ -1,10 +1,10 @@
 import Observer from "../observe/observe";
 import Complier from "../complier/index";
-import { mergeObj } from "../../tool/utils";
 import init from "./init";
 
-//现版本有个问题，moushVue是以根实例的形态构建的，没有考虑组件，现在说不算是重构，但需要增加细节让其变成以组件来构建的形式，毕竟跟实例也能算是个组件
-
+/*
+ 根类对象，用于暴露给用户创建vm实例
+*/
 export default class moushVue implements VM{
   $options: any;
   $data: any;
@@ -37,10 +37,14 @@ export default class moushVue implements VM{
   }
 }
 
+/*
+ 子类对象，不暴露给用户，专用于内部创建子实例对象vm
+*/
+
 export class com extends moushVue {
   constructor(options: any) {
     super(options);
-    this.setAttr(this.$oldNode,this.$el);
+    this.setAttr(this.$oldNode,this.$el); //正因如此，会先分析节点内部属性，再分析后附属性
   }
   protected init() {
     super.init();

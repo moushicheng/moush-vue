@@ -1,4 +1,3 @@
-import Watcher from "../observe/watcher"
 import attrComplier from "./attrComplier";
 import textComplier from "./textComplier";
 import componentComplier,{isHtmlTags} from "./componentComplier";
@@ -7,9 +6,7 @@ enum type {
     Attr=1,
     A,
     Text
-
 }
-
 
 export default  class Complier{
     $vm:VM
