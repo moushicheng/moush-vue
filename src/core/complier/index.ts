@@ -26,9 +26,10 @@ export default  class Complier{
     const name=node.localName;
     if(node.nodeType==type.Attr){
         if(!isHtmlTags(name)){ 
-            const com=new componentComplier(node,this.$vm); //执行流程：重新注册组件替换节点，节点上附上原来就有的属性值attr
+      
+            const com=new componentComplier(node,this.$vm); //执行流程：注册组件和替换节点，并执行一系列初始vue的流程,最后会附加旧节点属性到新节点上进行下面的解析。
             node=com.getComVm().$el;
-            new attrComplier(node,this.$vm);
+            new attrComplier(node,this.$vm); 
             return; 
         } 
         new attrComplier(node,this.$vm) //处理属性，需要注意的是，如果是vue属性（v-if v-on），应该在处理完之后在节点上删去,否则会和子组件混淆

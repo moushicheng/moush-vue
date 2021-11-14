@@ -12,6 +12,7 @@ export default class moushVue implements VM{
   $parentVm: VM;
   $childrenVm: VM[];
   $methods:any
+  $oldNode:any;
   constructor(options: OPTIONS) {
     this.$options = options;
     this.init();
@@ -39,6 +40,7 @@ export default class moushVue implements VM{
 export class com extends moushVue {
   constructor(options: any) {
     super(options);
+    this.setAttr(this.$oldNode,this.$el);
   }
   protected init() {
     super.init();
@@ -53,8 +55,9 @@ export class com extends moushVue {
     const newNode = this.createDom(this.$options.template); //根据模板创建新节点
     parentNode.removeChild(node); //删除旧节点
     parentNode.insertBefore(newNode, nextNode); //添加新节点
-    //附加原属性
-    this.setAttr(node, newNode);
+
+    //记录旧节点
+    this.$oldNode=node;
     //挂载
     this.$el = newNode;
     this.$options.mounted.call(this);

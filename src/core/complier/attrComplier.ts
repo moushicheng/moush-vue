@@ -1,13 +1,13 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-11-13 12:38:23
+ * @LastEditTime: 2021-11-14 09:21:49
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
  * 可以输入预定的版权声明、个性签名、空行等
  */
-import { warn } from "../../tool/utils";
+import { warn, isType } from "../../tool/utils";
 import Watcher from "../observe/watcher";
 const commonAttr = {
   "v-if": /^v-if/,
@@ -17,15 +17,18 @@ const commonAttr = {
 export default class attrComplier {
   $vm: VM;
   $attrs: Object;
-  $node: any;
-  $complierIndex
-  constructor(node, vm,complierIndex=0) {
+  $node: HTMLDivElement;
+  $complierIndex;
+  constructor(node, vm, complierIndex = 0) {
     this.$vm = vm;
     this.$node = node;
-    this.$complierIndex=complierIndex
-
-    let vueAttrs = this.getAllVueAttrs(node);
-    vueAttrs = this.aliasTransform(vueAttrs);
+    this.$complierIndex = complierIndex;
+   
+    const vueAttrs = this.getAllVueAttrs(node);
+    if (vueAttrs.length == 0) {
+         
+      return;
+    }
     this.$attrs = this.collectAttrs(vueAttrs);
     this.handeler(this.$attrs);
     this.removeAttrs(vueAttrs);
@@ -39,7 +42,7 @@ export default class attrComplier {
         if (res == true) return;
         res = attrExp.test(attr.name);
       });
-      
+
       return res;
     });
     return attrs;
@@ -53,7 +56,7 @@ export default class attrComplier {
         value: attrs[i].nodeValue,
         run: "handel" + attrs[i].name.split("-").join("").toUpperCase(),
       };
-      this.formatAttrs(res[attrs[i].name]);
+      this.formatAttrs(res[attrs[i].name]); //使v-bind:attr=value这种属性规整化
     }
     return res;
   }
@@ -64,9 +67,9 @@ export default class attrComplier {
         warn("a invalid name:" + split[0]);
         return;
       }
-      attr.name=split[0]
-      attr.value=`${split[1]}:${attr.value}`
-      attr.run=attr.run.split(':')[0];
+      attr.name = split[0];
+      attr.value = `${split[1]}:${attr.value}`;
+      attr.run = attr.run.split(":")[0];
     }
     return attr;
   }
@@ -74,7 +77,12 @@ export default class attrComplier {
   aliasTransform(attrs) {
     return attrs;
   }
-  removeAttrs(attrs){
+  removeAttrs(attrs) {
+    const node=this.$node;
+    for(const attr of attrs){
+      node.removeAttributeNode(attr);
+    }
+
     return null;
   }
   handeler(attrs) {
@@ -114,10 +122,7 @@ export default class attrComplier {
     });
     w.update();
   }
-  handelVBIND(attr) {
-    
-  }
-  handelVON(attr){
-    console.log(attr);
+  handelVBIND(attr) {}
+  handelVON(attr) {
   }
 }
