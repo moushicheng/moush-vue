@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-11-14 18:50:55
+ * @LastEditTime: 2021-11-14 19:11:37
  * @LastEditors: your name
  * @Description: 属性编辑器，用于分析属性
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
@@ -129,7 +129,7 @@ export default class attrComplier {
   handelVON(attr) {
     const node=this.$node
     const event=attr.value.split(':')[0]
-    let func=this.$vm.$methods[attr.value.split(':')[1]]
+    const func=this.$vm.$methods[attr.value.split(':')[1]]
     node.addEventListener(event,func)
   }
 }
