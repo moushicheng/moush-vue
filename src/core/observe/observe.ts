@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-05 22:05:34
- * @LastEditTime: 2021-11-10 09:43:55
+ * @LastEditTime: 2021-11-15 09:17:21
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\observe\observe.ts
@@ -20,7 +20,7 @@ export default class Observer{
         }
     }
     walk(obj:Object){
-        for(let [key,val] of Object.entries(obj)){            
+        for(const [key,val] of Object.entries(obj)){            
            this.detect(obj,key,val)
         }
     }

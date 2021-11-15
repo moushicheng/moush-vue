@@ -9,9 +9,11 @@
 <body>
   <div id="app">
     <div class="ageContent" >
-      {{name}}的年龄是{{age}}
+      <p>
+        {{name}}的年龄是{{age}}
+      </p>
       <button v-on:click="addFunc">年龄++</button>
-      <coma v-if="isShow"  v-on:click="addFunc"></coma> 
+      <coma v-if="isShow"></coma> 
   </div>
   
 </body>
