@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-11-12 13:44:36
- * @LastEditTime: 2021-11-14 14:48:06
+ * @LastEditTime: 2021-11-17 10:56:59
  * @LastEditors: your name
  * @Description: init类，用于moushVue类对象的初始化 
  * @FilePath: \moush-vue-test\src\core\instance\init.ts
@@ -28,6 +28,7 @@ export default class init{
   private dataInit(){
     const vm=this.$vm
     vm.$data = vm.$options.data();
+       
     for (const key in vm.$data) {
       Object.defineProperty(vm, key, {
         get() {

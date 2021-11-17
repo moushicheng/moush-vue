@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-30 22:05:23
- * @LastEditTime: 2021-11-17 08:48:31
+ * @LastEditTime: 2021-11-17 14:26:28
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\index.ts
@@ -22,8 +22,7 @@ const app = new moushVue({
     },
     methods:{
        addFunc:function(){
-
-         this.arr[1]++;
+         this.arr[0]++;
        },
        switchIsShow:function(){
          this.isShow=!this.isShow

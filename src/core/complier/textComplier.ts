@@ -1,12 +1,13 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-28 13:13:20
- * @LastEditTime: 2021-11-17 08:39:51
+ * @LastEditTime: 2021-11-17 14:33:22
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\complier\textComplier.ts
  * 可以输入预定的版权声明、个性签名、空行等
  */
+import { isType } from "../../tool/utils";
 import Watcher from "../observe/watcher";
 
 export default class textComplier{
@@ -25,9 +26,11 @@ export default class textComplier{
             let raw = match[0]
             let key = match[1].trim()
             let index=splitTemplate.indexOf(key)
-          
+            
             let w=new Watcher(this.$vm,raw,key,(val,oldVal)=>{
-
+                if(val.__target__){
+                    val=val.__target__
+                }
                 splitTemplate[index]=val;
                 this.$node.nodeValue =splitTemplate.join('')
             })
@@ -36,3 +39,4 @@ export default class textComplier{
 
     }
 }
+

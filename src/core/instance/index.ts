@@ -32,7 +32,7 @@ export default class moushVue implements VM{
     this.$options.mounted.call(this);
   }
   protected observe() {
-    new Observer(this.$data); //使data内部数据可观测
+    new Observer('$data',this.$data,this); //使data内部数据可观测
     new Complier(this); //分析el内部节点并生成相应watcher
   }
 }

@@ -42,8 +42,6 @@ export default class Watcher {
     return function (obj) {
       for (let i = 0; i < segments.length; i++) {
         if (!obj) return;
-        
-
         if (bailRE.test(segments[i])) {
           //this.arr[0]  this[arr[0]] 
           const match=segments[i].match(/(\w+)\[(.+)\]/)
@@ -51,7 +49,6 @@ export default class Watcher {
           obj=obj[match[2]];
           continue;
         }
-
         obj = obj[segments[i]] 
       }
       return obj
