@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-05 22:05:34
- * @LastEditTime: 2021-11-17 14:27:09
+ * @LastEditTime: 2021-11-17 18:48:53
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\observe\observe.ts
@@ -55,8 +55,7 @@ export default class ObserverNext {
         return true;
       },
     });
-    val.__target__ = val;
-    //在父对象上替换obj
+
     parent[this.findKey(parent, val)] = proxy;
   }
   private findKey(obj, value, compare = (a, b) => a === b) {

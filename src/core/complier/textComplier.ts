@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-28 13:13:20
- * @LastEditTime: 2021-11-17 14:33:22
+ * @LastEditTime: 2021-11-17 18:49:20
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\complier\textComplier.ts
@@ -28,15 +28,15 @@ export default class textComplier{
             let index=splitTemplate.indexOf(key)
             
             let w=new Watcher(this.$vm,raw,key,(val,oldVal)=>{
-                if(val.__target__){
-                    val=val.__target__
+                if(isType(val,'Object') || isType(val,'Array')){
+                    val=JSON.stringify(val);
                 }
                 splitTemplate[index]=val;
+                
                 this.$node.nodeValue =splitTemplate.join('')
             })
             w.update();
         }
-
     }
 }
 
