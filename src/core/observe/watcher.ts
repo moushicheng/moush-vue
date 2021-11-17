@@ -1,3 +1,5 @@
+import { isType } from "../../tool/utils";
+
 export default class Watcher {
     vm:VM
     cb:Function;
@@ -7,7 +9,8 @@ export default class Watcher {
     constructor (vm,initVal,expOrFn,cb) {
       this.vm = vm;
       this.cb = cb;
-      this.getter = parsePath(expOrFn)
+      if(isType(expOrFn,'String'))this.getter = parsePath(expOrFn)
+      else if(isType(expOrFn,'Function'))this.getter=expOrFn
       this.value = this.get() //收集依赖
       this.value=initVal
     }
@@ -34,13 +37,21 @@ export default class Watcher {
    */
   const bailRE = /[^\w.$]/
   export function parsePath (path) {
-    if (bailRE.test(path)) {
-      return
-    }
+
     const segments = path.split('.')
     return function (obj) {
       for (let i = 0; i < segments.length; i++) {
-        if (!obj) return
+        if (!obj) return;
+        
+
+        if (bailRE.test(segments[i])) {
+          //this.arr[0]  this[arr[0]] 
+          const match=segments[i].match(/(\w+)\[(.+)\]/)
+          obj=obj[match[1]];
+          obj=obj[match[2]];
+          continue;
+        }
+
         obj = obj[segments[i]] 
       }
       return obj

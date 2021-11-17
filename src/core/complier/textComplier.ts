@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-28 13:13:20
- * @LastEditTime: 2021-10-28 18:49:11
+ * @LastEditTime: 2021-11-17 08:39:51
  * @LastEditors: your name
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\src\core\complier\textComplier.ts
@@ -27,6 +27,7 @@ export default class textComplier{
             let index=splitTemplate.indexOf(key)
           
             let w=new Watcher(this.$vm,raw,key,(val,oldVal)=>{
+
                 splitTemplate[index]=val;
                 this.$node.nodeValue =splitTemplate.join('')
             })
