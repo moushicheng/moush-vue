@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-11-18 16:07:32
+ * @LastEditTime: 2021-11-18 19:21:26
  * @Description: 属性编辑器，用于分析属性
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
  */
@@ -149,6 +149,8 @@ export default class attrComplier {
 
     const nodeVal = this.$node.innerHTML;
     for (let i = 0; i < list.length; i++) {
+
+      //替换{{item.a}}->{{arr[0].a}}
       const reg = /{{(.+?)}}/g;
       let match: any = reg.exec(nodeVal);
       if (match) {
@@ -156,11 +158,15 @@ export default class attrComplier {
         temp[0] = segments + `[${i}]`;
         match = temp.join(".");
       }
+      //克隆并插入新节点
       let newNodeVal = nodeVal.replace(reg, `{{${match}}}`);
       const node = document.createElement(this.$node.localName);
       node.innerHTML = newNodeVal;
       parentNode.insertBefore(node, recordSite);
+
+      //重新编译
+      new Complier(this.$vm,node)
     }
-    new Complier(this.$vm,parentNode)
+ 
   }
 }
