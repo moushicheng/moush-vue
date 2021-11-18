@@ -1,11 +1,9 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-06 15:33:23
- * @LastEditTime: 2021-11-17 14:09:47
- * @LastEditors: your name
- * @Description: 请添加介绍
+ * @LastEditTime: 2021-11-18 08:38:56
+ * @Description: 依赖收集器
  * @FilePath: \moush-vue-test\src\core\observe\dep.ts
- * 可以输入预定的版权声明、个性签名、空行等
  */
 import Watcher from "./watcher";
 

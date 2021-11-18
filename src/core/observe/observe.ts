@@ -1,12 +1,11 @@
 /*
  * @Author: 某时橙
- * @Date: 2021-10-05 22:05:34
- * @LastEditTime: 2021-11-17 18:48:53
- * @LastEditors: your name
- * @Description: 请添加介绍
+ * @Date: 2021-10-08 21:03:32
+ * @LastEditTime: 2021-11-18 08:38:33
+ * @Description: 观察者,用于检测对象|数组内的变化来调用依赖
  * @FilePath: \moush-vue-test\src\core\observe\observe.ts
- * 可以输入预定的版权声明、个性签名、空行等
  */
+
 import { def } from "../../tool/utils";
 import Dep from "./dep";
 

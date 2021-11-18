@@ -1,11 +1,9 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-11-12 13:44:36
- * @LastEditTime: 2021-11-17 10:56:59
- * @LastEditors: your name
+ * @LastEditTime: 2021-11-18 08:39:31
  * @Description: init类，用于moushVue类对象的初始化 
  * @FilePath: \moush-vue-test\src\core\instance\init.ts
- * 可以输入预定的版权声明、个性签名、空行等
  */
 import { mergeObj } from "../../tool/utils";
 export default class init{

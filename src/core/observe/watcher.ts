@@ -1,3 +1,11 @@
+/*
+ * @Author: 某时橙
+ * @Date: 2021-10-08 21:03:32
+ * @LastEditTime: 2021-11-18 08:39:16
+ * @Description: 依赖本身，最终的目的都是调用cb
+ * @FilePath: \moush-vue-test\src\core\observe\watcher.ts
+ */  
+ 
 import { isType } from "../../tool/utils";
 
 export default class Watcher {

@@ -1,11 +1,9 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-28 13:13:20
- * @LastEditTime: 2021-11-17 18:49:20
- * @LastEditors: your name
- * @Description: 请添加介绍
+ * @LastEditTime: 2021-11-18 08:41:09
+ * @Description: 文本编译器
  * @FilePath: \moush-vue-test\src\core\complier\textComplier.ts
- * 可以输入预定的版权声明、个性签名、空行等
  */
 import { isType } from "../../tool/utils";
 import Watcher from "../observe/watcher";

@@ -1,3 +1,10 @@
+/*
+ * @Author: 某时橙
+ * @Date: 2021-10-30 21:48:22
+ * @LastEditTime: 2021-11-18 08:40:20
+ * @Description: 编译器，构建$el下的dom
+ * @FilePath: \moush-vue-test\src\core\complier\index.ts
+ */
 import attrComplier from "./attrComplier";
 import textComplier from "./textComplier";
 import componentComplier,{isHtmlTags} from "./componentComplier";

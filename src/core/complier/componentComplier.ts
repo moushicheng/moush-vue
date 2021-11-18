@@ -1,3 +1,10 @@
+/*
+ * @Author: 某时橙
+ * @Date: 2021-10-30 21:48:22
+ * @LastEditTime: 2021-11-18 08:40:04
+ * @Description: 分析组件，构建组件
+ * @FilePath: \moush-vue-test\src\core\complier\componentComplier.ts
+ */
 import { makeSet, warn } from "../../tool/utils";
 
 import { com } from "../instance/index";

@@ -1,11 +1,9 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-11-14 19:11:37
- * @LastEditors: your name
+ * @LastEditTime: 2021-11-18 08:39:54
  * @Description: 属性编辑器，用于分析属性
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
- * 可以输入预定的版权声明、个性签名、空行等
  */
 import { warn, isType } from "../../tool/utils";
 import Watcher from "../observe/watcher";
@@ -131,5 +129,8 @@ export default class attrComplier {
     const event=attr.value.split(':')[0]
     const func=this.$vm.$methods[attr.value.split(':')[1]]
     node.addEventListener(event,func)
+  }
+  handelVFOR(attr){
+    
   }
 }
