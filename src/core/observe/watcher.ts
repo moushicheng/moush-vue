@@ -1,12 +1,12 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-08 21:03:32
- * @LastEditTime: 2021-11-18 08:39:16
+ * @LastEditTime: 2021-11-18 09:08:56
  * @Description: 依赖本身，最终的目的都是调用cb
  * @FilePath: \moush-vue-test\src\core\observe\watcher.ts
  */  
  
-import { isType } from "../../tool/utils";
+import { isType, parsePath } from "../../tool/utils";
 
 export default class Watcher {
     vm:VM
@@ -36,29 +36,4 @@ export default class Watcher {
     }
   }
   
-  /**
-   * Parse simple path.
-   * 把一个形如'data.a.b.c'的字符串路径所表示的值，从真实的data对象中取出来
-   * 例如：
-   * data = {a:{b:{c:2}}}
-   * parsePath('a.b.c')(data)  // 2
-   */
-  const bailRE = /[^\w.$]/
-  export function parsePath (path) {
 
-    const segments = path.split('.')
-    return function (obj) {
-      for (let i = 0; i < segments.length; i++) {
-        if (!obj) return;
-        if (bailRE.test(segments[i])) {
-          //this.arr[0]  this[arr[0]] 
-          const match=segments[i].match(/(\w+)\[(.+)\]/)
-          obj=obj[match[1]];
-          obj=obj[match[2]];
-          continue;
-        }
-        obj = obj[segments[i]] 
-      }
-      return obj
-    }
-  }

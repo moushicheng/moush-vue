@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-30 22:05:23
- * @LastEditTime: 2021-11-18 08:55:43
+ * @LastEditTime: 2021-11-18 16:03:17
  * @LastEditors: Please set LastEditors
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\index.ts
@@ -17,7 +17,7 @@ const app = new moushVue({
         age: 1,
         name: "小明",
         isShow: true,
-        arr:[1,2,3],
+        arr:[1,2,3,4,5,6,7,8,9,10,11],
       };
     },
     methods:{
@@ -35,7 +35,6 @@ const app = new moushVue({
           return {
             appName: "moush",
             appAttr:"attr",
-
           };
         },
       },

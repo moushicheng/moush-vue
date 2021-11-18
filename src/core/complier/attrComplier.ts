@@ -1,30 +1,32 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-15 21:28:29
- * @LastEditTime: 2021-11-18 08:39:54
+ * @LastEditTime: 2021-11-18 16:07:32
  * @Description: 属性编辑器，用于分析属性
  * @FilePath: \moush-vue-test\src\core\complier\attrComplier.ts
  */
-import { warn, isType } from "../../tool/utils";
+import { warn, isType, parsePath } from "../../tool/utils";
 import Watcher from "../observe/watcher";
+import Complier from "./index";
+import textComplier from "./textComplier";
 const commonAttr = {
   "v-if": /^v-if/,
   "v-on": /^v-on/,
   "v-bind": /^(v-bind)|^:.+/,
+  "v-for": /^v-for/,
 };
 export default class attrComplier {
   $vm: VM;
   $attrs: Object;
   $node: HTMLDivElement;
-  $complierIndex:any;
+  $complierIndex: any;
   constructor(node, vm, complierIndex = 0) {
     this.$vm = vm;
     this.$node = node;
     this.$complierIndex = complierIndex;
-   
+
     const vueAttrs = this.getAllVueAttrs(node);
     if (vueAttrs.length == 0) {
-         
       return;
     }
     this.$attrs = this.collectAttrs(vueAttrs);
@@ -54,7 +56,7 @@ export default class attrComplier {
         value: attrs[i].nodeValue,
         run: "handel" + attrs[i].name.split("-").join("").toUpperCase(),
       };
-      this.formatAttrs(res[attrs[i].name]); 
+      this.formatAttrs(res[attrs[i].name]);
     }
     return res;
   }
@@ -77,9 +79,11 @@ export default class attrComplier {
     return attrs;
   }
   removeAttrs(attrs) {
-    const node=this.$node;
-    for(const attr of attrs){
-      node.removeAttributeNode(attr);
+    const node = this.$node;
+    for (const attr of attrs) {
+      if (node.hasAttribute(attr.name)) {
+        node.removeAttributeNode(attr);
+      }
     }
 
     return null;
@@ -121,16 +125,42 @@ export default class attrComplier {
     });
     w.update();
   }
-  handelVBIND(attr) {
-    
-  }
+  handelVBIND(attr) {}
   handelVON(attr) {
-    const node=this.$node
-    const event=attr.value.split(':')[0]
-    const func=this.$vm.$methods[attr.value.split(':')[1]]
-    node.addEventListener(event,func)
+    const node = this.$node;
+    const event = attr.value.split(":")[0];
+    const funcName = attr.value.split(":")[1];
+    const func = parsePath(funcName)(this.$vm.$methods);
+    node.addEventListener(event, func);
   }
-  handelVFOR(attr){
-    
+  handelVFOR(attr) {
+    let val = attr.value.split("in");
+    const item = val[0].trim();
+    const segments = val[1].trim();
+    const list = parsePath(segments)(this.$vm.$data);
+    //{{item.a}}怎么解析？文本替换即可 ->{{list[0].a}} ->{{list[1].a}}
+    const recordSite = this.$node.nextSibling;
+    const parentNode = this.$node.parentElement;
+
+    //移除子节点属性
+    this.$node.removeAttribute(attr.name);
+    //移除子节点
+    parentNode.removeChild(this.$node);
+
+    const nodeVal = this.$node.innerHTML;
+    for (let i = 0; i < list.length; i++) {
+      const reg = /{{(.+?)}}/g;
+      let match: any = reg.exec(nodeVal);
+      if (match) {
+        let temp = match[1].split(".");
+        temp[0] = segments + `[${i}]`;
+        match = temp.join(".");
+      }
+      let newNodeVal = nodeVal.replace(reg, `{{${match}}}`);
+      const node = document.createElement(this.$node.localName);
+      node.innerHTML = newNodeVal;
+      parentNode.insertBefore(node, recordSite);
+    }
+    new Complier(this.$vm,parentNode)
   }
 }

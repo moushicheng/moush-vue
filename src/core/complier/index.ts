@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-30 21:48:22
- * @LastEditTime: 2021-11-18 08:40:20
+ * @LastEditTime: 2021-11-18 16:07:09
  * @Description: 编译器，构建$el下的dom
  * @FilePath: \moush-vue-test\src\core\complier\index.ts
  */
@@ -17,9 +17,9 @@ enum type {
 
 export default  class Complier{
     $vm:VM
-   constructor(vm){
+   constructor(vm,node=vm.$el){
       this.$vm=vm;
-      this.run(vm.$el)
+      this.run(node)
    }
    run(node){
     //分析el内部节点类型，遇到对应的节点就生成相应的watcher
