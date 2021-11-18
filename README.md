@@ -1,8 +1,8 @@
 <!--
  * @Author: 某时橙
  * @Date: 2021-10-13 21:35:58
- * @LastEditTime: 2021-11-14 21:22:34
- * @LastEditors: your name
+ * @LastEditTime: 2021-11-18 08:56:11
+ * @LastEditors: Please set LastEditors
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\README.md
  * 可以输入预定的版权声明、个性签名、空行等
@@ -16,14 +16,23 @@
 > npm run install
 ## start
 > npm run dev
+## build
+> npm run build or webpack
+
 
 ## feature
 
 1. 框架直接操作真实dom而没有用到vdom
 2. 只实现了vue的部分功能，因为事无巨细全部实现的话有点搬砖。
+3. 不像vue2.x的缺陷,moush-vue内数组可通过下标索引完成视图更新
 
 ## finish
 1. 声明式渲染
 2. 条件渲染 v-if
 3. 事件处理
-4. 组件
+4. 组件渲染
+
+## for dev
+在config/indexTemplate.html中定义模板
+在index.ts中编写vue代码
+然后输入npm run dev即可看到效果
