@@ -1,11 +1,9 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-14 20:43:41
- * @LastEditTime: 2021-11-18 09:08:13
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-11-18 19:42:43
  * @Description: 全局通用工具函数
  * @FilePath: \moush-vue-test\src\tool\utils.ts
- * 可以输入预定的版权声明、个性签名、空行等
  */
 
 export function mergeObj(obj1: Object, obj2: Object) {

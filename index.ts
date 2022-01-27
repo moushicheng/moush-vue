@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-30 22:05:23
- * @LastEditTime: 2021-11-18 16:03:17
+ * @LastEditTime: 2022-01-27 13:02:24
  * @LastEditors: Please set LastEditors
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\index.ts
@@ -17,12 +17,12 @@ const app = new moushVue({
         age: 1,
         name: "小明",
         isShow: true,
-        arr:[1,2,3,4,5,6,7,8,9,10,11],
+        arr:[1,2,3],
       };
     },
     methods:{
        addFunc:function(){
-         this.arr[0]++
+           console.log(this.arr.push);
        },
        switchIsShow:function(){
          this.isShow=!this.isShow
@@ -40,3 +40,5 @@ const app = new moushVue({
       },
     },
   });
+ console.log(app);
+ 

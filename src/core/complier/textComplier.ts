@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-28 13:13:20
- * @LastEditTime: 2021-11-18 16:04:01
+ * @LastEditTime: 2021-12-31 10:13:26
  * @Description: 文本编译器
  * @FilePath: \moush-vue-test\src\core\complier\textComplier.ts
  */
@@ -29,6 +29,7 @@ export default class textComplier{
                 if(isType(val,'Object') || isType(val,'Array')){
                     val=JSON.stringify(val);
                 }
+
                 splitTemplate[index]=val;
                 
                 this.$node.nodeValue =splitTemplate.join('')
