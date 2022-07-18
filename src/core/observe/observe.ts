@@ -7,13 +7,14 @@
  */
 
 import { def } from "../../tool/utils";
+import depNext from "./dep";
 import Dep from "./dep";
 
 export default class ObserverNext {
   $value: any;
   $parent: any;
   $key: string;
-  dep: any;
+  dep: depNext
   constructor(key, value, parent) {
     this.$key = key;
     this.$value = value;
@@ -43,12 +44,10 @@ export default class ObserverNext {
         if (!(property in obj)) {
           return;
         }
-        console.log(obj[property]);
         dep.depend(property);
         return obj[property];
       },
       set(obj, property, value) {
-        console.log("set");
         obj[property] = value;
         //bug，如果设置的属性是对象，则还未使其深度检测
         // self.walk(value)

@@ -7,7 +7,7 @@ import init from "./init";
 */
 export default class moushVue implements VM{
   $options: OPTIONS;
-  $data: Function;
+  $data:any;
   $el: HTMLElement;
   $parentVm: VM;
   $childrenVm: VM[];

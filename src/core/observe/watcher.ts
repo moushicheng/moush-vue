@@ -11,7 +11,7 @@ import { isType, parsePath } from "../../tool/utils";
 export default class Watcher {
     vm:VM
     cb:Function;
-    getter:any;
+    getter:Function;
     value:any;
     
     constructor (vm,initVal,expOrFn,cb) {
