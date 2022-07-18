@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-30 21:48:22
- * @LastEditTime: 2021-11-18 16:07:09
+ * @LastEditTime: 2022-01-27 13:05:38
  * @Description: 编译器，构建$el下的dom
  * @FilePath: \moush-vue-test\src\core\complier\index.ts
  */
@@ -37,7 +37,6 @@ export default  class Complier{
             return; 
         } 
         new attrComplier(node,this.$vm) //处理属性，需要注意的是，如果是vue属性（v-if v-on），应该在处理完之后在节点上删去,否则会和子组件混淆
-
 
         node.childNodes.forEach(childNode => {
             this.run(childNode)

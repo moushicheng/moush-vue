@@ -1,7 +1,7 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-08 21:03:32
- * @LastEditTime: 2021-11-18 08:38:33
+ * @LastEditTime: 2022-01-27 13:11:01
  * @Description: 观察者,用于检测对象|数组内的变化来调用依赖
  * @FilePath: \moush-vue-test\src\core\observe\observe.ts
  */
@@ -12,10 +12,10 @@ import Dep from "./dep";
 export default class ObserverNext {
   $value: any;
   $parent: any;
-  $key:string
+  $key: string;
   dep: any;
-  constructor(key,value, parent) {
-    this.$key=key;
+  constructor(key, value, parent) {
+    this.$key = key;
     this.$value = value;
 
     this.$parent = parent;
@@ -30,41 +30,42 @@ export default class ObserverNext {
     for (const [key, val] of Object.entries(obj)) {
       if (typeof val == "object") {
         //同时判断数组和对象
-        new ObserverNext(key,val, obj);
+        new ObserverNext(key, val, obj);
       }
     }
   }
   private detect(val: any, parent: any) {
-    const dep = this.dep
-    const key=this.$key
+    const dep = this.dep;
+    const key = this.$key;
+
     const proxy = new Proxy(val, {
       get(obj, property) {
-        if (!obj.hasOwnProperty(property)) {
+        if (!(property in obj)) {
           return;
         }
+        console.log(obj[property]);
         dep.depend(property);
         return obj[property];
       },
       set(obj, property, value) {
+        console.log("set");
         obj[property] = value;
+        //bug，如果设置的属性是对象，则还未使其深度检测
+        // self.walk(value)
 
         dep.notify(property);
-        if(parent.__ob__)parent.__ob__.dep.notify(key)
+        if (parent.__ob__) parent.__ob__.dep.notify(key);
 
         return true;
       },
     });
 
-    parent[this.findKey(parent, val)] = proxy;
-  }
-  private findKey(obj, value, compare = (a, b) => a === b) {
-    return Object.keys(obj).find((k) => compare(obj[k], value));
+    parent[key] = proxy;
   }
 }
 // function findKey(obj, value, compare = (a, b) => a === b) {
 //   return Object.keys(obj).find((k) => compare(obj[k], value));
 // }
-
 
 // export  class Observer {
 //   value: any;

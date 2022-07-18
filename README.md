@@ -1,7 +1,7 @@
 <!--
  * @Author: 某时橙
  * @Date: 2021-10-13 21:35:58
- * @LastEditTime: 2021-11-18 16:08:46
+ * @LastEditTime: 2021-11-30 11:12:49
  * @LastEditors: Please set LastEditors
  * @Description: 请添加介绍
  * @FilePath: \moush-vue-test\README.md
@@ -29,12 +29,12 @@
 ## finish
 1. 声明式渲染
 2. 条件渲染 v-if
-3. 列表渲染
-4. 事件处理
-5. 组件渲染
+3. 列表渲染 v-for
+4. 事件处理 v-on
+5. 组件渲染 
 
 
-## for dev
+## for dev  
 在config/indexTemplate.html中定义模板
 在index.ts中编写vue代码
 然后输入npm run dev即可看到效果

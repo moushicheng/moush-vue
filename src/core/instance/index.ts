@@ -6,13 +6,13 @@ import init from "./init";
  根类对象，用于暴露给用户创建vm实例
 */
 export default class moushVue implements VM{
-  $options: any;
-  $data: any;
+  $options: OPTIONS;
+  $data: Function;
   $el: HTMLElement;
   $parentVm: VM;
   $childrenVm: VM[];
-  $methods:any
-  $oldNode:any;
+  $methods:Object;
+  $oldNode:HTMLElement;
   constructor(options: OPTIONS) {
     this.$options = options;
     this.init();
@@ -42,7 +42,7 @@ export default class moushVue implements VM{
 */
 
 export class com extends moushVue {
-  constructor(options: any) {
+  constructor(options) {
     super(options);
     this.setAttr(this.$oldNode,this.$el); //正因如此，会先分析节点内部属性，再分析后附属性
   }
@@ -52,7 +52,11 @@ export class com extends moushVue {
   }
   protected mount() { 
     this.$options.beforeMount.call(this);
-    const node: HTMLElement = this.$options.el;
+    this.$el =
+    typeof this.$options.el == "string"
+      ? document.querySelector(this.$options.el)
+      : this.$options.el;
+    const node: HTMLElement = this.$el
     const parentNode: HTMLElement = node.parentElement;
     const nextNode = node.nextSibling;
     //替换原节点

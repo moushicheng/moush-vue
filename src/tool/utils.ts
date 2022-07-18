@@ -1,11 +1,9 @@
 /*
  * @Author: 某时橙
  * @Date: 2021-10-14 20:43:41
- * @LastEditTime: 2021-11-18 09:08:13
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-02-04 10:12:03
  * @Description: 全局通用工具函数
  * @FilePath: \moush-vue-test\src\tool\utils.ts
- * 可以输入预定的版权声明、个性签名、空行等
  */
 
 export function mergeObj(obj1: Object, obj2: Object) {
@@ -52,14 +50,17 @@ export function def(obj: Object, key: string, val: any, enumerable?: boolean) {
    * parsePath('a.b.c')(data)  // 2
    */
 export function parsePath(path) {
-  const bailRE = /[^\w.$]/;
+  const bailRE = /[^\w.$]/; //不匹配字母、数字、下划线、点号和$符号
   const segments = path.split(".");
   return function (obj) {
     for (let i = 0; i < segments.length; i++) {
       if (!obj) return;
       if (bailRE.test(segments[i])) {
         //this.arr[0]  this[arr[0]]
-        const match = segments[i].match(/(\w+)\[(.+)\]/);
+        //a.b[0]
+        const match = segments[i].match(/(\w+)\[(.+)\]/); 
+        //(\w+) ->任意多个字母数字下划线 
+        //\[(.+)\]  ->匹配[]内的内容
         obj = obj[match[1]];
         obj = obj[match[2]];
         continue;

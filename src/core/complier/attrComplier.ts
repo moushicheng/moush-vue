@@ -8,7 +8,6 @@
 import { warn, isType, parsePath } from "../../tool/utils";
 import Watcher from "../observe/watcher";
 import Complier from "./index";
-import textComplier from "./textComplier";
 const commonAttr = {
   "v-if": /^v-if/,
   "v-on": /^v-on/,
