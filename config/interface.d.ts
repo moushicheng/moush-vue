@@ -3,8 +3,9 @@ interface OPTIONS {
   el: string;
   mounted?: Function;
   beforeMount?: Function;
-  components:any
+  components?:any;
   methods?:Object<any>;
+  template?:string;
 }
 
 interface Window {
@@ -14,9 +15,9 @@ interface Window {
 
 interface VM {
   $options: any;
-  $data: any;
+  $data: Function;
   $el: HTMLElement;
   $parentVm: VM;
   $childrenVm: VM[];
-  $methods:any
+  $methods:Object;
 }
