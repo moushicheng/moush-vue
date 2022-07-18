@@ -53,7 +53,7 @@ const HTMLTags = makeSet(
       getComponentData(){
         const name=this.$node.localName;
         const com=this.$fatherVm.$options.components[name]
-        if(!name){
+        if(!com){
           warn('没有找到组件数据,你真的注册了组件吗？')
         }
         return com;

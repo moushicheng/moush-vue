@@ -42,7 +42,7 @@ export default class moushVue implements VM{
 */
 
 export class com extends moushVue {
-  constructor(options: any) {
+  constructor(options) {
     super(options);
     this.setAttr(this.$oldNode,this.$el); //正因如此，会先分析节点内部属性，再分析后附属性
   }

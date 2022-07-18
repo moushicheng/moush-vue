@@ -34,7 +34,7 @@
 5. 组件渲染 
 
 
-## for dev
+## for dev  
 在config/indexTemplate.html中定义模板
 在index.ts中编写vue代码
 然后输入npm run dev即可看到效果
