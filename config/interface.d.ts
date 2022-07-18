@@ -15,7 +15,7 @@ interface Window {
 
 interface VM {
   $options: any;
-  $data: any;
+  $data: Function;
   $el: HTMLElement;
   $parentVm: VM;
   $childrenVm: VM[];
